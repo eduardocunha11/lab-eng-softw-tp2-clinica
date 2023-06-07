@@ -1,0 +1,32 @@
+<div class="p-3">
+	<div class="card p-3">
+		<h1 class="text-primary mb-3">Lista de Todos os Agendamentos</h1>
+
+		<div class="w-100 overflow-auto pb-2">
+			<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border table-striped table-bordered">
+				<thead>
+					<tr>
+						<th>Data Consulta</th>
+						<th>Horário</th>
+						<th>Especialidade</th>
+						<th>Médico</th>
+						<th>Nome do Paciente</th>
+						<th>E-mail do Paciente</th>
+						<th>Telefone do Paciente</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let appointment of appointments">
+						<td>{{ appointment.data | date:'dd/MM/yyyy':'pt-BR' }}</td>
+						<td>{{ appointment.horario | number: "2.0-0" }}hrs</td>
+						<td>{{ appointment.medico?.especialidade }}</td>
+						<td [innerHTML]="formatPhysicianData(appointment)"></td>
+						<td>{{ appointment.nome }}</td>
+						<td>{{ appointment.email }}</td>
+						<td>{{ appointment.telefone }}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

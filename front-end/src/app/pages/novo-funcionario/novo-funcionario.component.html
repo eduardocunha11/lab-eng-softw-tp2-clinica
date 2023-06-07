@@ -1,0 +1,214 @@
+<div class="container pt-3 pb-3">
+	<div class="card p-3">
+		<h1 class="text-primary mb-3">Cadastro de Funcionários</h1>
+
+		<form [formGroup]="form" (ngSubmit)="save()">
+			<div class="text-left">
+				<div class="form-row">
+					<div class="form-group col-12 col-sm-6">
+						<label for="nome">Nome:</label>
+						<app-visual-validator [config]="validations" field="nome">
+							<input
+								#nomeInput
+								id="nome"
+								type="text"
+								class="form-control"
+								placeholder="Digite o nome do funcionário"
+								formControlName="nome"
+								autofocus
+							>
+						</app-visual-validator>
+					</div>
+					<div class="form-group col-12 col-sm-6">
+						<label for="email">E-mail:</label>
+						<app-visual-validator [config]="validations" field="email">
+							<input
+								id="email"
+								type="email"
+								class="form-control"
+								formControlName="email"
+								placeholder="Digite o e-mail do funcionário"
+							>
+						</app-visual-validator>
+					</div>
+				</div>
+
+				<div class="form-row">
+					<div class="form-group col-12 col-sm-3">
+						<label for="telefone">Telefone:</label>
+						<app-visual-validator [config]="validations" field="telefone">
+							<input
+								id="telefone"
+								type="telefone"
+								class="form-control"
+								formControlName="telefone"
+								placeholder="(__) ____-____"
+								formControlName="telefone"
+								[textMask]="{ mask: telephoneMask, guide: true }"
+							>
+						</app-visual-validator>
+					</div>
+					<div class="form-group col-12 col-sm-3">
+						<label for="cep">CEP:</label>
+						<app-visual-validator [config]="validations" field="cep">
+							<input
+								#cepInput
+								id="cep"
+								type="text"
+								class="form-control"
+								placeholder="_____-___"
+								formControlName="cep"
+								[textMask]="{ mask: cepMask, guide: true }"
+								autofocus
+							>
+						</app-visual-validator>
+					</div>
+					<div class="form-group col-12 col-sm-6">
+						<label for="logradouro">Logradouro:</label>
+						<app-visual-validator [config]="validations" field="logradouro">
+							<input
+								id="logradouro"
+								type="text"
+								class="form-control"
+								formControlName="logradouro"
+								placeholder="Digite o nome do logradouro"
+							>
+						</app-visual-validator>
+					</div>
+				</div>
+
+				<div class="form-row">
+					<div class="form-group col-12 col-sm-4">
+						<label for="bairro">Bairro:</label>
+						<app-visual-validator [config]="validations" field="bairro">
+							<input
+								id="bairro"
+								type="text"
+								class="form-control"
+								formControlName="bairro"
+								placeholder="Digite o nome do bairro"
+								autofocus
+							>
+						</app-visual-validator>
+					</div>
+					<div class="form-group col-12 col-sm-4">
+						<label for="cidade">Cidade:</label>
+						<app-visual-validator [config]="validations" field="cidade">
+							<input
+								id="cidade"
+								type="text"
+								class="form-control"
+								formControlName="cidade"
+								placeholder="Digite o nome da cidade"
+								autofocus
+							>
+						</app-visual-validator>
+					</div>
+					<div class="form-group col-12 col-sm-4">
+						<label for="estado">Estado:</label>
+						<app-visual-validator [config]="validations" field="estado">
+							<ng-select id="estado"
+								[items]="estados"
+								dropdownPosition="bottom"
+								placeholder="Selecione um estado"
+								formControlName="estado"
+							></ng-select>
+						</app-visual-validator>
+					</div>
+				</div>
+
+				<div class="form-row">
+					<div class="form-group col-12 col-sm-4">
+						<label for="dataContrato">Data de Contratação:</label>
+						<app-visual-validator [config]="validations" field="dataContrato">
+							<input
+								id="dataContrato"
+								type="text"
+								class="form-control"
+								formControlName="dataContrato"
+								placeholder="Selecione uma data"
+								bsDatepicker
+								[bsConfig]="bsConfig"
+								autocomplete="off"
+							>
+						</app-visual-validator>
+					</div>
+					<div class="form-group col-12 col-sm-4">
+						<label for="salario">Salário:</label>
+						<app-visual-validator [config]="validations" field="salario">
+							<input
+								id="salario"
+								type="text"
+								class="form-control"
+								placeholder="R$ 0,00"
+								autocomplete="off"
+								formControlName="salario"
+								currencyMask
+								[options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
+							>
+						</app-visual-validator>
+					</div>
+					<div class="form-group col-12 col-sm-4">
+						<label for="senha">Senha:</label>
+						<app-visual-validator [config]="validations" field="senha">
+							<input
+								id="senha"
+								type="password"
+								class="form-control"
+								placeholder="Digite uma senha"
+								formControlName="senha"
+							>
+						</app-visual-validator>
+					</div>
+				</div>
+
+				<div class="form-row">
+					<div class="form-group col-12">
+						<div class="custom-control custom-switch switch-both">
+							<input type="checkbox" class="custom-control-input" id="medico" formControlName="medico">
+							<label class="custom-control-label" for="medico"></label>
+							<label for="medico">Este funcionário é um médico.</label>
+						</div>
+					</div>
+				</div>
+
+				<div class="form-row" *ngIf="form.controls.medico.value">
+					<div class="form-group col-12 col-sm-6">
+						<label for="especialidade">Especialidade:</label>
+						<app-visual-validator [config]="validations" field="especialidade">
+							<input
+								id="especialidade"
+								type="text"
+								class="form-control"
+								placeholder="Digite o especialidade do médico"
+								formControlName="especialidade"
+							>
+						</app-visual-validator>
+					</div>
+					<div class="form-group col-12 col-sm-6">
+						<label for="crm">CRM:</label>
+						<app-visual-validator [config]="validations" field="crm">
+							<input
+								id="crm"
+								type="text"
+								class="form-control"
+								formControlName="crm"
+								placeholder="Digite o crm do médico"
+								maxlength="15"
+							>
+						</app-visual-validator>
+					</div>
+				</div>
+			</div>
+
+			<div>
+				<button class="btn btn-dark pl-5 pr-5 mb-3 mr-3" type="button" (click)="clear()">
+					Limpar
+				</button>
+				<button class="btn btn-primary pl-5 pr-5 mb-3" type="submit" [disabled]="form.invalid">
+					Salvar Funcionário
+				</button>
+			</div>
+		</form>
+	</div>
+</div>

@@ -1,0 +1,109 @@
+<nav class="navbar navbar-expand-md navbar-dark pt-md-0 pb-md-0">
+	<div>
+		<button class="navbar-toggler pt-2 pb-2 mr-2" type="button" (click)="isMenuCollapsed = !isMenuCollapsed" aria-controls="menu" [attr.aria-expanded]="!isMenuCollapsed" aria-label="Abrir menu">
+			<fa-icon [icon]="faBars"></fa-icon>
+		</button>
+
+		<a class="navbar-brand" [routerLink]="['/']">
+			<fa-icon class="mr-2" [icon]="faHeartbeat"></fa-icon>
+			<span>Klimed</span>
+		</a>
+	</div>
+
+	<div class="navbar-collapse justify-content-between" id="menu" [collapse]="isMenuCollapsed" [isAnimated]="true">
+		<ul class="navbar-nav me-auto mb-0 d-sm-flex" *ngIf="!restrictedArea">
+			<li class="nav-item">
+				<a class="nav-link" [routerLinkActive]="'active'" [routerLink]="['/home']">
+					<fa-icon class="mr-2 d-inline-block d-md-inline" [icon]="faHome" title="Home"></fa-icon>
+					<span>Home</span>
+				</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" [routerLinkActive]="'active'" [routerLink]="['/galeria']">
+					<fa-icon class="mr-2 d-inline-block d-md-inline" [icon]="faImages" title="Galeria"></fa-icon>
+					<span>Galeria</span>
+				</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" [routerLinkActive]="'active'" [routerLink]="['/novoEndereco']">
+					<fa-icon class="mr-2 d-inline-block d-md-inline" [icon]="faMapMarkedAlt" title="Novo Endereço"></fa-icon>
+					<span>Novo Endereço</span>
+				</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" [routerLinkActive]="'active'" [routerLink]="['/agendamento']">
+					<fa-icon class="mr-2 d-inline-block d-md-inline" [icon]="faCalendarDay" title="Agendamento"></fa-icon>
+					<span>Agendamento</span>
+				</a>
+			</li>
+		</ul>
+
+		<ul class="navbar-nav me-auto mb-0 d-sm-flex" *ngIf="restrictedArea">
+			<li class="nav-item">
+				<a class="nav-link" [routerLinkActive]="'active'" [routerLink]="['/novoFuncionario']">
+					<fa-icon class="mr-2 d-inline-block d-md-inline" [icon]="faTools" title="Novo Funcionário"></fa-icon>
+					<span>Novo Funcionário</span>
+				</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" [routerLinkActive]="'active'" [routerLink]="['/novoPaciente']">
+					<fa-icon class="mr-2 d-inline-block d-md-inline" [icon]="faUserInjured" title="Novo Paciente"></fa-icon>
+					<span>Novo Paciente</span>
+				</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" [routerLinkActive]="'active'" [routerLink]="['/listarFuncionarios']">
+					<fa-icon class="mr-2 d-inline-block d-md-inline" [icon]="faUsers" title="Listar Funcionários"></fa-icon>
+					<span>Funcionários</span>
+				</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" [routerLinkActive]="'active'" [routerLink]="['/listarPacientes']">
+					<fa-icon class="mr-2 d-inline-block d-md-inline" [icon]="faHospitalUser" title="Listar Pacientes"></fa-icon>
+					<span>Pacientes</span>
+				</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" [routerLinkActive]="'active'" [routerLink]="['/listarEnderecos']">
+					<fa-icon class="mr-2 d-inline-block d-md-inline" [icon]="faMapMarkedAlt" title="Listar Endereços"></fa-icon>
+					<span>Endereços</span>
+				</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" [routerLinkActive]="'active'" [routerLink]="['/listarTodosAgendamentos']">
+					<fa-icon class="mr-2 d-inline-block d-md-inline" [icon]="faCalendar" title="Listar Todos Agendamentos"></fa-icon>
+					<span>Todos Agendamentos</span>
+				</a>
+			</li>
+			<li class="nav-item" *ngIf="isPhysician">
+				<a class="nav-link" [routerLinkActive]="'active'" [routerLink]="['/listarMeusAgendamentos']">
+					<fa-icon class="mr-2 d-inline-block d-md-inline" [icon]="faCalendarWeek" title="Listar Meus Agendamentos"></fa-icon>
+					<span>Meus Agendamentos</span>
+				</a>
+			</li>
+		</ul>
+
+		<ul class="navbar-nav mb-0 flex-row" *ngIf="isLoggedIn">
+			<li class="nav-item">
+				<a class="nav-link active" title="Acessar área restrita" target="_blank" href="/novoFuncionario">
+					<fa-icon class="mr-2" [icon]="faUserCircle"></fa-icon>
+					<span>{{ username }}</span>
+				</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link active" title="Sair" href="javascript:void(0)" (click)="logout()">
+					<fa-icon class="logout-icon pl-2" [icon]="faSignOutAlt"></fa-icon>
+				</a>
+			</li>
+		</ul>
+
+		<ul class="navbar-nav mb-0 flex-row" *ngIf="!isLoggedIn">
+			<li class="nav-item">
+				<a class="nav-link active user pr-2" title="Entrar" [routerLink]="['/login']">
+					<span>Entrar</span>
+					<fa-icon class="logout-icon pl-2" [icon]="faSignInAlt"></fa-icon>
+				</a>
+			</li>
+		</ul>
+	</div>
+</nav>

@@ -1,0 +1,32 @@
+<div class="p-3">
+	<div class="card p-3">
+		<h1 class="text-primary mb-3">Lista de Pacientes</h1>
+
+		<div class="w-100 overflow-auto pb-2">
+			<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border table-striped table-bordered">
+				<thead>
+					<tr>
+						<th>Nome</th>
+						<th>E-mail</th>
+						<th>Telefone</th>
+						<th>Endereço</th>
+						<th>Peso</th>
+						<th>Altura</th>
+						<th>Tipo Sanguíneo</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let patient of patients">
+						<td>{{ patient.nome }}</td>
+						<td>{{ patient.email }}</td>
+						<td>{{ patient.telefone }}</td>
+						<td [innerHTML]="formatAddress(patient)"></td>
+						<td>{{ patient.paciente?.peso | number: "1.1-1" }} kg</td>
+						<td>{{ patient.paciente?.altura | number: "1.2-2" }} m</td>
+						<td>{{ patient.paciente?.tipoSanguineo }}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

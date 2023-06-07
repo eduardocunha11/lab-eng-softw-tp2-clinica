@@ -1,0 +1,116 @@
+<div class="container pt-3 pb-3">
+	<div class="card p-3">
+		<h1 class="text-primary mb-3">Fazer Agendamento</h1>
+
+		<form [formGroup]="form" (ngSubmit)="save()">
+			<div class="text-left">
+				<div class="form-row">
+					<div class="form-group col-12 col-sm-6">
+						<label for="especialidade">Especialidade Médica:</label>
+						<app-visual-validator [config]="validations" field="especialidade">
+							<ng-select id="especialidade"
+								[items]="especialidades"
+								dropdownPosition="bottom"
+								placeholder="Selecione uma especialidade"
+								formControlName="especialidade"
+							></ng-select>
+						</app-visual-validator>
+					</div>
+					<div class="form-group col-12 col-sm-6">
+						<label for="medico">Médico:</label>
+						<app-visual-validator [config]="validations" field="medico">
+							<ng-select id="medico"
+								[items]="medicos"
+								bindValue="codigo"
+								bindLabel="nome"
+								dropdownPosition="bottom"
+								placeholder="Selecione um médico"
+								formControlName="medico"
+							></ng-select>
+						</app-visual-validator>
+					</div>
+				</div>
+
+				<div class="form-row">
+					<div class="form-group col-12 col-sm-3">
+						<label for="dataConsulta">Data da Consulta:</label>
+						<app-visual-validator [config]="validations" field="dataConsulta">
+							<input
+								id="dataConsulta"
+								type="text"
+								class="form-control"
+								formControlName="dataConsulta"
+								placeholder="Selecione uma data"
+								bsDatepicker
+								[bsConfig]="bsConfig"
+								autocomplete="off"
+							>
+						</app-visual-validator>
+					</div>
+					<div class="form-group col-12 col-sm-3">
+						<label for="horario">Horário:</label>
+						<app-visual-validator [config]="validations" field="horario">
+							<ng-select id="horario"
+								[items]="horarios"
+								dropdownPosition="bottom"
+								placeholder="Selecione um horário"
+								formControlName="horario"
+							></ng-select>
+						</app-visual-validator>
+					</div>
+					<div class="form-group col-12 col-sm-6">
+						<label for="nome">Nome:</label>
+						<app-visual-validator [config]="validations" field="nome">
+							<input
+								id="nome"
+								type="text"
+								class="form-control"
+								placeholder="Digite o seu nome"
+								formControlName="nome"
+								autofocus
+							>
+						</app-visual-validator>
+					</div>
+				</div>
+
+				<div class="form-row">
+					<div class="form-group col-12 col-sm-6">
+						<label for="email">E-mail:</label>
+						<app-visual-validator [config]="validations" field="email">
+							<input
+								id="email"
+								type="email"
+								class="form-control"
+								formControlName="email"
+								placeholder="Digite o seu e-mail"
+							>
+						</app-visual-validator>
+					</div>
+					<div class="form-group col-12 col-sm-4">
+						<label for="telefone">Telefone:</label>
+						<app-visual-validator [config]="validations" field="telefone">
+							<input
+								id="telefone"
+								type="telefone"
+								class="form-control"
+								formControlName="telefone"
+								placeholder="(__) ____-____"
+								formControlName="telefone"
+								[textMask]="{ mask: telephoneMask, guide: true }"
+							>
+						</app-visual-validator>
+					</div>
+				</div>
+			</div>
+
+			<div>
+				<button class="btn btn-dark pl-5 pr-5 mb-3 mr-3" type="button" (click)="clear()">
+					Limpar
+				</button>
+				<button class="btn btn-primary pl-5 pr-5 mb-3" type="submit" [disabled]="form.invalid">
+					Salvar Agendamento
+				</button>
+			</div>
+		</form>
+	</div>
+</div>

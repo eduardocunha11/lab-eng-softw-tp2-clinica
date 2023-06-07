@@ -1,0 +1,32 @@
+<div class="p-3">
+	<div class="card p-3">
+		<h1 class="text-primary mb-3">Lista de Funcionários</h1>
+
+		<div class="w-100 overflow-auto pb-2">
+			<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border table-striped table-bordered">
+				<thead>
+					<tr>
+						<th>Nome</th>
+						<th>E-mail</th>
+						<th>Telefone</th>
+						<th>Endereço</th>
+						<th>Data Contratação</th>
+						<th>Salário</th>
+						<th>Médico</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let worker of workers">
+						<td>{{ worker.nome }}</td>
+						<td>{{ worker.email }}</td>
+						<td>{{ worker.telefone }}</td>
+						<td [innerHTML]="formatAddress(worker)"></td>
+						<td>{{ worker.funcionario?.dataContrato | date:'dd/MM/yyyy':'pt-BR' }}</td>
+						<td>{{ worker.funcionario?.salario | currency:"BRL" }}</td>
+						<td [innerHTML]="formatPhysicianData(worker)"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
