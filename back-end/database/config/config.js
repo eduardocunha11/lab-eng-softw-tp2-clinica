@@ -18,11 +18,11 @@ module.exports = {
 		pool: { max: 20, min: 0 }
 	},
 	production: {
-		username: "postgres",
-		password: "root",
-		database: "klimed",
-		host: "127.0.0.1",
-		dialect: "postgres",
+		username: "eduardocunha11",
+		password: "UV3GDNFi1BdZ",
+		database: "neondb",
+		host: "ep-holy-unit-576309.us-east-2.aws.neon.tech",
+		dialect: "neondb",
 		logging: false,
 		pool: { max: 20, min: 0 }
 	}
