@@ -1,7 +1,7 @@
 module.exports = {
 	development: {
 		username: "postgres",
-		password: "root",
+		password: "1897",
 		database: "klimed_dev",
 		host: "127.0.0.1",
 		dialect: "postgres",
