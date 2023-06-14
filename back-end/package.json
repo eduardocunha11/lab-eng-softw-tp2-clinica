@@ -10,7 +10,7 @@
 		"db_migrate": "sequelize-cli db:migrate",
 		"db_seeds": "sequelize-cli db:seed:all",
 		"db_seed": "sequelize-cli db:seed --seed",
-		"vercel-build": "sequelize-cli db:create && sequelize-cli db:migrate && sequelize-cli db:seed:all deploy"
+		"vercel-build": "sequelize-cli db:migrate && sequelize-cli db:seed:all"
 	},
 	"author": "Lucas Rassilan Vilanova",
 	"license": "ISC",
