@@ -122,7 +122,8 @@
 		}
 	},
 	"defaultProject": "Klimed",
-	"cli": {
+  "cli": {
+    "analytics": "336bf9b0-237b-43f1-9a38-4dee93980930",
 		"defaultCollection": "@angular-eslint/schematics"
 	}
 }
